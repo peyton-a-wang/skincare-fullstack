@@ -1,0 +1,42 @@
+<!-- CRAP Skincare Fall 2021
+Carol, Rachel, Allie, Peyton -->
+
+{% extends "product-base.html" %}
+{% block head_content %}
+
+{% endblock %}
+{% block content %}
+
+<br>
+<div class="user_card">
+    <img src="{{src}}" alt="avatar">
+    <p><b>Name: </b>{{user.name}}</p>
+    <p><b>Email: </b>{{user.email}}</p>
+    <p><b>Skin Concern: </b>{{user.skin_concern}}</p>
+    <p><b>Skin Type: </b>{{user.skin_type}}</p>
+</div>
+
+
+<div class="routines">
+    <br>
+    <p class = "routineHighlight">
+        <b>Routine Playlists:</b></p>
+        {% for routine in routines %}
+        
+            <a href="{{url_for('routine_contents', user_id=routine.name_id, routine_id=routine.routine_id)}}">
+                {{routine.routine_name}}</a>
+        {% endfor %}
+        {% if is_self %}
+        <p>
+            <a href="{{url_for('routine_form')}}">Create Skincare Routine</a>
+        </p>
+        <p>
+            <a href="{{url_for('edit_profile', user_id= user.name_id)}}">Edit Profile</a>
+        </p>
+        {% endif %}
+    {% if msg %}
+    <p>{{msg}}</p>
+    {% endif %}
+</div>
+
+{% endblock %}

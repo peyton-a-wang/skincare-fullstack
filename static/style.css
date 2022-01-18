@@ -1,0 +1,285 @@
+/* the --color-header and others are CSS variables, which we access later. 
+*/
+
+HTML {
+    --color-header: #0090a9;  /* color for H1-H6 and others. was deepskyblue but poor contrast. */
+    --color-hilite: #b50000;  /* was red, but this avoids WAVE contrast errors */ 
+    --color-focus: #5f6eaf;
+    --font-family: 'Nunito', sans-serif;
+    font-family: var(--font-family)
+}
+
+/* For flashed messages; make them stand out using red and italics */
+
+#messages {
+    color: var(--color-hilite);
+    font-style: italic;
+}
+
+.buttons {
+    margin-bottom: 30px;
+}
+
+a:hover{
+    padding: 6px;
+}
+/* gets rid of link decorations */
+a.linkNoChange{
+    color: #3b2806;
+    font-family: inherit;
+    text-decoration: none;
+}
+
+h1 {
+    font-size: 250%;
+    color: #3b2806;
+    text-align: center;
+}
+
+h2, h3 {
+    color: #3b2806;
+}
+    
+body{
+    color: #3b2806;
+}
+
+/* for a simple navbar. Talk to Scott if you want drop-downs. */
+nav > ul {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    background-color:#ffba3c;
+
+}
+nav ul {
+    list-style-type: none;
+    margin: 0px;
+    padding: 15px;
+    font-family: 'Nunito', sans-serif;
+}
+nav > ul > li {
+    flex: 0 1 auto;
+    padding: 0px 20px 0px 0px;
+    width: auto; 
+}
+nav button, nav a {
+    /* display: block; */
+    box-sizing: border-box; /* easier to make button and A the same size */
+    width: 100%;
+    height: 40px;
+    padding: 0px;
+    padding-bottom: 5px;
+    /* background-color: var(--color-header); was #3498db */
+    /* border: 2px solid black; */
+    border-radius: 5px;
+    cursor: pointer;
+    /* Firefox uses font -apple-system unless I repeat the font spec here. */
+    font-family: inherit;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+/* Only the top-level buttons are centered; lower ones are left-aligned. */
+nav > ul > li > button , nav > ul > li > a {
+    text-align: center;
+}
+/* because of the margin trick, this can only be used for the last element */
+nav li.right {
+    margin-left: auto;
+}
+nav button:hover, button:focus, nav a:hover, nav a:focus {
+    background-color: var(--color-focus);
+    color: white;
+}
+
+/* Headings found on base.html */
+#mainHeading{
+    color: #5f6eaf;
+    font-size:75px; 
+}
+#subHeading{
+    font-size: 15px;
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 20px;
+    letter-spacing: 4px;
+}
+
+/* Search Bar found on base.html + adv_search.html */
+.search{ 
+    flex-grow: 3;
+    padding-left: 20px;
+}
+.search-bar{
+    width: 60%;
+    height: 25px;
+    border: 2px solid #3b2806;
+}
+
+/* #login-button,
+#join-button,
+#submit-button, 
+#logout-button,
+#addProductButton{ */
+input[type="submit"] {
+font-family: 'Nunito', sans-serif;
+    color: white;
+    background-color: #3b2806;
+    padding: 8px 30px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+}
+
+select {
+    padding: 6px 30px;
+    text-align: center;
+}
+
+select, input[type="text"], input[type="url"] {
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 8px;
+    font-family: 'Nunito', sans-serif;
+}
+
+input[type="text"], input[type="url"] {
+    padding: 6px;
+}
+
+/* List of all/searched products on home.html */
+.listStyle{
+    padding: 0px 40px;
+}
+.listItem{
+    padding: 20px;
+    margin-bottom: 10px;
+    border: 4px solid #5f6eaf;
+    border-radius: 25px;
+    list-style-type: none;
+}
+
+.routineProductList{
+    text-align: center;
+    padding: 30px;
+    margin-bottom: 10px;
+    border: 4px solid #eeb752;
+    border-radius: 25px;
+    list-style-type: none;
+}
+
+.listItem > h3 {
+    margin-top: 0px;
+}
+
+/* adjusts content in product.html */
+.productContent{
+    margin: 30px;
+}
+
+.star-rating{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: left;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+.star-rating input {
+    display: none;
+ }
+ .star-rating > label {
+     width: 30px;
+     height: 30px;
+     font-size: 30px;
+     color: #ffba3c;
+ }
+ .star-rating label::before{
+     content: "☆"; 
+ }
+ .star-rating input:checked ~ label:before{
+     content: '★';
+ }
+
+/*css for the comment & review box and past reviews */
+.review_box{
+    border-style: dotted;
+    border-color: #eeb752;
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 25px;
+    /* width: 60%;
+    margin: auto; */
+}
+/* .past_reviews{ 
+    border-style: solid;
+    border-color:  #eeb752;
+    margin-top: 20px;
+    padding: 20px;
+} */
+
+#comment {
+    margin: 10px 0px 0px 0px;
+}
+
+/* adjusts entire form page to be in the middle of the screen */
+.formPage{
+    width: 50%;
+    margin: auto;
+}
+ /* styles the form itself  */
+.formFormat{
+    border: 6px solid #5f6eaf;
+    border-radius: 25px;
+    padding: 30px
+}
+.formFormat input[type="submit"]{
+    background-color:#ffba3c;
+}
+
+
+.user_card{
+    color:white;
+    text-align: center;
+    padding: 0px 20px 15px;
+    background: #5f6eaf;
+    max-width: 20%;
+    margin: auto;
+    border-radius: 25px;
+}
+.user_card img{
+    margin-top: 30px;
+    max-width: 50%;
+    border-radius: 50%;
+}
+
+.routineHighlight {
+    background: #5f6eaf; 
+    border-radius: 25px; 
+    max-width: 20%; 
+    margin: auto; 
+    color: white;
+}
+
+.routines{
+    color:  #4e3e2f;
+    text-align: center;
+    list-style-position: inside;
+    list-style: none;
+}
+
+/* css for routine-related item*/
+.routineProductList{
+    text-align: center;
+    padding: 30px;
+    margin-bottom: 10px;
+    border: 4px solid #eeb752;
+    border-radius: 25px;
+    list-style-type: none;
+}
+
+
+
+
