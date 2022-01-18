@@ -1,0 +1,40 @@
+<!-- CRAP Skincare Fall 2021
+Carol, Rachel, Allie, Peyton -->
+
+{% extends "product-base.html" %}
+{% block content %}
+<div class = formPage>
+    <h1>Advanced Search</h1>
+    <form class = "formFormat" method="POST" action="{{url_for('adv_search')}}">
+        <p><label>Search:
+            <input class="search-bar" style = "all: revert;" size="79" 
+            type="text" name="name" placeholder="Search for a product..." required>
+        </label></p>
+        <p><input type="radio" id="exact" name="submit" value="with the exact phrase" required>
+            <label for="with the exact phrase">with the exact phrase</label><br>
+            <input type="radio" id="contains" name="submit" value="contains the phrase">
+            <label for="contains the phrase">contains the phrase</label><br></p>
+        <p><label>Type: 
+            <select id="type-dropdown" name="type">
+                <option value="">choose type</option>
+                {% for type in types %}
+                <option value="{{type.type}}">{{type.type}}</option>
+                {% endfor %}
+            </select>
+        </label></p>
+        <p><label>Brand: 
+            <select id="brand-dropdown" name="brand">
+                <option value="">choose brand</option>
+                {% for brand in brands %}
+                <option value="{{brand.brand}}">{{brand.brand}}</option>
+                {% endfor %}
+            </select>
+        </label></p>
+        <p style = "text-align: center;">
+            <input id="advsearch-submit-button" type="submit" value="Submit">
+        </p>
+        <p>Note: Advanced search uses an inclusive search on product attributes.</p>
+    </form>
+</div>
+
+{% endblock %}

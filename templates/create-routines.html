@@ -1,0 +1,25 @@
+<!-- CRAP Skincare Fall 2021
+Carol, Rachel, Allie, Peyton -->
+
+{% extends "product-product-base.html" %}
+{% block content %}
+<div class = "formPage">
+    <h1>Create a Routine</h1>
+    <form class = "formFormat" method="POST" action="{{url_for('routine_form')}}">
+        <div class="add-routines">
+            <label for="routine-name">Routine Name * </label>
+            <input type="text" id = "routine-name" name="routine-name" size="37" required>
+            <p><label for="product">Add Your First Product *</label>
+            <select id="product" name="product">
+                <option value="">Choose One</option>
+                {% for product in products %}
+                <option value="{{product.product_id}}">
+                    Product: {{product.product_name}}, Brand: {{product.brand}}
+                </option>
+                {% endfor %}
+            </select></p>
+            <p ><input type="submit" name="submit" value="submit"></p>
+        </div>
+    </form>
+</div>
+{% endblock %}

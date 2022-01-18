@@ -1,0 +1,50 @@
+<!-- CRAP Skincare Fall 2021
+Carol, Rachel, Allie, Peyton -->
+
+{% extends "product-base.html" %}
+{% block content %}
+
+<div class = "formPage">
+    <h1 style = "margin-bottom: 0px;">Edit Product: </h1> 
+    <h2 style = "text-align: center;"> {{product.product_name}} <br> by {{product.brand}}</h2>
+    <form class = "formFormat" method="POST" action="{{url_for('edit', product_id=product.product_id)}}">
+        <p><label>Product Name:
+            <input type="text" name="product-name" 
+                size="60" value="{{product.product_name}}" required>
+        </label></p>
+        <p><label>Product Type:
+            <select id="add-type-dropdown" name="product-type" required>
+                <option value="{{product.product_type}}" selected>{{product.product_type}}</option>
+                {% for type in types %}
+                    <option value="{{type.type}}">{{type.type}}</option>
+                {% endfor %}
+            </select>
+        </label></p>
+        <p><label>Brand:
+            <select id="add-brand-dropdown" name="product-brand" required>
+                <option value="{{product.brand}}" selected>{{product.brand}}</option>
+                {% for brand in brands %}
+                    {% if brand.brand != product.brand %}
+                    <option value="{{brand.brand}}">{{brand.brand}}</option>
+                    {% endif %}  
+                {% endfor %}
+            </select>
+        </label></p>
+        <p><label>Key Ingredients:
+            <select id = "key-ingredient-checkbox" name="product-ingredients" multiple="multiple">
+                {% for ingredient in ingredients %}
+                <option value="{{ingredient.ingredient}}">{{ingredient.ingredient}}</option>
+                {% endfor %}
+            </select>
+        </label></p>
+        <p><label>Product URL:
+            <input type="url" name="product-url" 
+                size="60" value="{{product.url}}" required>
+        </label></p>
+        <p style = "text-align: center;">
+            <input type="submit" name="submit" 
+                id="addProductButton" value="submit">
+        </p>
+    </form>
+</div>
+{% endblock %}

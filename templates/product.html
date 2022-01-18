@@ -1,0 +1,89 @@
+<!-- CRAP Skincare Fall 2021
+Carol, Rachel, Allie, Peyton -->
+
+{% extends "product-base.html" %}
+{% block content %}
+<div class = productContent>
+  <h1 style = "text-align: left;">{{product.product_name}}</h1>
+
+  <!-- <p>Name: {{product.product_name}}</p> -->
+  <p>Brand: {{product.brand}}</p>
+  <p>Product Type: {{product.product_type}}</p>
+  <p>Key Ingredients: 
+    <ul>
+      {% for ingredient in ingredients %}
+      <li>
+        {{ingredient.ingredient}}
+      </li>
+      {% endfor %}
+    </ul>
+
+  <p>
+    <a href="{{product.url}}">Buy here!</a>
+  </p>
+
+<form method="post" action="{{url_for('product', product_id=product.product_id)}}">
+  <div class=buttons> 
+    <input type="submit" name="submit" value="Edit Product">
+    <input type="submit" name="submit" value="Delete Product">
+  </div>
+  <p><label for = "routines-dropdown">Add to Routine:</label>
+    <select id="routines-dropdown" name="routine-name">
+      <option value="">choose routine</option>
+      {% for routine in routines %}
+      <option value="{{routine.routine_name}}">{{routine.routine_name}}</option>
+      {% endfor %}
+  </select>
+  <input type="submit" name="submit" value="Add">
+  </p>
+
+  {% if user_review %}
+  <p>Your Review:</p>
+  <ol>
+      <p>Rating: {{user_review.rating}} Stars</p>
+      <p>Comment: {{user_review.comment}}</p>
+  </ol>
+  <div class=buttons> 
+    <input type="submit" name="submit" value="Delete">
+  </div>
+  <p>Update Your Review:</p>
+  {% else %}
+  <p>Leave a Review:</p>
+  {% endif %}
+  <div class=review_box> 
+    <p><label>Comment: <br>
+      <textarea id="comment" name="comment" rows="5" cols="60"></textarea>
+    </label></p>
+    
+    <p style = "margin-bottom: 0px;"> Rate the product out of 5 stars:
+      <div class="star-rating">
+        <input type="radio" id="star5" name="rate" value="5" />
+        <label for="star5" title="text"></label>
+        <input type="radio" id="star4" name="rate" value="4" />
+        <label for="star4" title="text"></label>
+        <input type="radio" id="star3" name="rate" value="3" />
+        <label for="star3" title="text"></label>
+        <input type="radio" id="star2" name="rate" value="2" />
+        <label for="star2" title="text"></label>
+        <input type="radio" id="star1" name="rate" value="1"/>          
+        <label for="star1" title="text"> </label>
+      </div>
+    <!-- </p> -->
+    
+    <p><input type="submit" name="submit" value="Submit Review"></p>
+  </div>
+</form>
+
+  <div class=listItem> 
+    <p>Past Reviews:</p>
+    {% for review in reviews %}
+      <br>
+      <p>Added by: <a href="{{url_for('other_profile', user_id=review.addedby)}}"> 
+        {{review.addedby}}</a></p>
+      <p>Rating: {{review.rating}}</p>
+      <p>Comment: {{review.comment}}</p>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}

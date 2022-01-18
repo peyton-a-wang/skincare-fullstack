@@ -1,0 +1,60 @@
+<!-- CRAP Skincare Fall 2021
+Carol, Rachel, Allie, Peyton -->
+
+{% extends "base.html" %}
+
+{% block body_content %}
+<body>
+    <h1 style = "margin-bottom: 0px;"> <!-- adjust h1 style -->
+        <a href="{{url_for('index')}}" class="linkNoChange" id="mainHeading">CRAP SKINCARE</a>
+    </h1>
+    <h2 id = "subHeading">overcome CRAP skin with care</h2>
+    <nav>
+        <ul>
+            {% block form_content %}
+            <li class="search">
+                    <form method="GET" action="{{url_for('search')}}">
+                        <label for = "navSearchBar"> search:
+                        <input class="search-bar"  id = "navSearchBar" type ="text" 
+                        required="" name="name" placeholder="Search for a product...">
+                        </label>
+                        <input id="seach-submit-button" type="submit" 
+                        value="Search" style="padding: 6px 30px"> <!-- search bar button is smaller -->
+                    </form>
+                    <a href="{{url_for('adv_search')}}" class = "linkNoChange" 
+                    style = "font-size: 12px;"> Go to Advanced Search</a>
+            </li>
+            {% endblock %}
+            <li><a href="{{url_for('index')}}" class = "linkNoChange">Home</a></li>
+            <li><a href="{{url_for('insert')}}" class = "linkNoChange">Add a Product</a></li>
+            <li><a href="{{url_for('profile')}}" class = "linkNoChange">Profile</a></li> 
+            <li><a href="{{url_for('logout')}}" class = "linkNoChange">Logout</a></li>
+        </ul>
+    </nav>
+    
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div id="messages">
+        {% for msg in messages %}
+        <p>{{msg}}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+
+    {% block content %}
+    {% endblock %}
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://rawgit.com/pbauerochse/searchable-option-list/master/sol.js"></script>
+    <script>
+        $(function() {
+            // used for selecting and searching for multiple ingredients in the database
+            $('#key-ingredient-checkbox').searchableOptionList();
+        });
+    </script>
+</body>
+{% endblock %}
+
+  {% block end_scripts %}
+  {% endblock %}

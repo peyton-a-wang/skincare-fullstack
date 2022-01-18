@@ -1,0 +1,54 @@
+<!-- '''
+CRAP Skincare Fall 2021
+Carol, Rachel, Allie, Peyton
+''' -->
+
+{% extends "product-base.html" %}
+{% block content %}
+<div class = formPage>
+    <h1>Insert Product</h1>
+
+    <form class = "formFormat" method="POST" action="{{url_for('insert')}}">
+        <p><label>Product Name *
+            <input type="text" name="product-name" size="50" required>
+        </label></p>
+        <p><label>Product Type *
+            <select id="add-type-dropdown" name="product-type" required>
+                <option value="">choose type</option>
+                {% for type in types %}
+                <option value="{{type['type']}}">{{type['type']}}</option>
+                {% endfor %}
+            </select>
+        </label></p>
+        <p><label>Brand *
+            <select id="add-brand-dropdown" name="product-brand" required>
+                <option value="">choose brand</option>
+                {% for brand in brands %}
+                <option value="{{brand['brand']}}">{{brand['brand']}}</option>
+                {% endfor %}
+            </select>
+        </label></p>
+        <p><label>Key Ingredients:
+            <select id = "key-ingredient-checkbox" name="product-ingredients" multiple="multiple">
+                {% for ingredient in ingredients %}
+                <option value="{{ingredient.ingredient}}">{{ingredient.ingredient}}</option>
+                {% endfor %}
+            </select>
+        </label></p>
+        <p><label>Product URL * 
+            <input type="url" name="product-url" size="50" required>
+        </label></p>
+        <p style = "text-align: center;">
+            <input type="submit" id="addProductButton" value="submit">
+        </p>
+    </form>
+</div>
+{% endblock %}
+
+<!-- <script>
+    $(function() {
+        $('#key-ingredient-checkbox').searchableOptionList();
+    });
+</script> -->
+{% block end_scripts %}
+  {% endblock %}

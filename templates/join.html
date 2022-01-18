@@ -1,0 +1,215 @@
+<!-- CRAP Skincare Fall 2021
+Carol, Rachel, Allie, Peyton -->
+
+{% extends "base.html" %}
+
+{% block body_content %}
+<style>
+    body {
+        font-family: 'Nunito', sans-serif;
+        margin: 0px;
+        padding: 0px;
+        background: #ffba3c;
+    }
+    
+    input[type="text"] {
+        font-family: Verdana;
+    }
+    
+    input[type="password"] {
+        font-family: Verdana;
+        letter-spacing: 0.125em;
+    }
+
+    .login, h2{
+        margin: auto;
+        width: 50%;
+        color: #3b2806;
+        font-family: 'Nunito', sans-serif;
+    }
+    
+    .context {
+        width: 100%;
+        position: absolute;
+        top:10%;
+        text-align: center;
+    }
+
+    .context h1{
+        font-family: 'Nunito', sans-serif;
+        color: #fff;
+        font-size: 75px;
+    }
+
+
+    input[type="submit"]{
+        font-family: 'Nunito', sans-serif;
+        color: white;
+        background-color: #3b2806;
+        padding: 8px 30px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
+        border: none;
+        border-radius: 8px;
+    }
+
+    .login {
+    margin: auto;
+    width: 50%;
+    color: #3b2806;
+    }
+    
+    .content {
+        width: 100%;
+        position: absolute;
+        top:10%;
+        text-align: center;
+    }
+    .content h1{
+        font-family: 'Nunito', sans-serif;
+        color: #3b2806;
+        font-size: 75px;
+    }
+
+    .content h2{
+        font-size: 25px;
+        letter-spacing: 5px;  
+    }
+    
+    .area {
+    background: #ffba3c;  
+    background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);  
+    width: 100%;
+    height:100vh;
+    }
+
+    .circles{
+        /* position: absolute; */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .circles li{
+        position: absolute;
+        display: block;
+        list-style: none;
+        width: 20px;
+        height: 20px;
+        background: rgba(255, 255, 255, 0.2);
+        animation: animate 25s linear infinite;
+        bottom: -150px;}
+    .circles li:nth-child(1){
+        left: 25%;
+        width: 80px;
+        height: 80px;
+        animation-delay: 0s; }
+    .circles li:nth-child(2){
+        left: 10%;
+        width: 20px;
+        height: 20px;
+        animation-delay: 2s;
+        animation-duration: 12s;}
+    .circles li:nth-child(3){
+        left: 70%;
+        width: 20px;
+        height: 20px;
+        animation-delay: 4s;}
+    .circles li:nth-child(4){
+        left: 40%;
+        width: 60px;
+        height: 60px;
+        animation-delay: 0s;
+        animation-duration: 18s;}
+    .circles li:nth-child(5){
+        left: 65%;
+        width: 20px;
+        height: 20px;
+        animation-delay: 0s;}
+    .circles li:nth-child(6){
+        left: 75%;
+        width: 110px;
+        height: 110px;
+        animation-delay: 3s;}
+    .circles li:nth-child(7){
+        left: 35%;
+        width: 150px;
+        height: 150px;
+        animation-delay: 7s;}
+    .circles li:nth-child(8){
+        left: 50%;
+        width: 25px;
+        height: 25px;
+        animation-delay: 15s;
+        animation-duration: 45s;}
+    .circles li:nth-child(9){
+        left: 20%;
+        width: 15px;
+        height: 15px;
+        animation-delay: 2s;
+        animation-duration: 35s;}
+    .circles li:nth-child(10){
+        left: 85%;
+        width: 150px;
+        height: 150px;
+        animation-delay: 0s;
+        animation-duration: 11s;}
+
+    @keyframes animate {
+
+    0%{
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+        border-radius: 0;
+    }
+
+    100%{
+        transform: translateY(-1000px) rotate(720deg);
+        opacity: 0;
+        border-radius: 50%;
+    }}
+</style>
+
+<body>
+    <div class = "content">
+        <h1>JOIN CRAP SKINCARE</h1>
+        <h2>Create Your Account!</h2>
+        <form id="join_form" method="post" action="{{url_for('join')}}" enctype="multipart/form-data">
+            <p><label>Username * <input type="text" name="username" value="{{username}}" required></label></p>
+            <p><label>Password * <input type="password" name="password" value="{{password}}" required></label></p>
+            <p><label>Name * <input type="text" name="name" value="{{name}}" required></label></p>
+            <p><label>Email * <input type="text" name="email" value="{{email}}" required></label*></p>
+            <p><label>Skin Concern <input type="text" name="skin_concern" value="{{skin_concern}}"></label></p>
+            <p><label>Skin Type <input type="text" name="skin_type" value="{{skin_type}}"></label></p>
+            <p><label>Upload a profile picture * <input type="file" name="pic" required></label></p>
+            <p><input style = "font-family: 'Nunito', sans-serif;" id = "join-button" type="submit" value="join"></p>
+            <p>{% with messages = get_flashed_messages() %}
+                {% if messages %}
+                <div id="messages">
+                    {% for msg in messages %}
+                    <p>{{msg}}</p>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                {% endwith %}</p>
+        </form>
+    </div>  
+    <div class="area" >
+        <ul class="circles">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+        </ul>
+    </div >
+</body>
+{% endblock %}

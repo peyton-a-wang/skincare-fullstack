@@ -1,0 +1,21 @@
+<!-- CRAP Skincare Fall 2021
+Carol, Rachel, Allie, Peyton -->
+
+{% extends "product-base.html" %}
+{% block content %}
+
+<div>
+    <h2 style = "padding-left: 40px">{{results_string}}</h2>
+    <ol>
+        {% for product in products %}
+        <li class = "listItem">
+        <h3><a href="{{url_for('product', product_id=product.product_id)}}">
+            {{product.product_name}}</a></h3> 
+            Type: {{product.product_type}} <br>
+            Brand: {{product.brand}}
+        </li> 
+        {% endfor %}
+    </ol>
+</div>
+
+{% endblock %}
